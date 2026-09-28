@@ -475,6 +475,76 @@
     .referral{padding:36px 20px;}
     .price-card.featured{order:-1;}
   }
+
+  /* Payments */
+  .pay-box{margin-top:28px; text-align:center;}
+  .pay-box .pay-title{color:var(--text-secondary); font-size:0.9rem; margin-bottom:14px;}
+  .pay-list{display:flex; flex-wrap:wrap; justify-content:center; gap:12px;}
+  .pay-chip{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:12px 20px; border-radius:12px;
+    background:var(--surface); border:1px solid var(--border);
+    font-size:0.95rem; font-weight:600;
+  }
+  .pay-chip span{font-size:1.2rem;}
+
+  /* Comparison */
+  .compare-wrap{max-width:820px; margin:0 auto; overflow-x:auto;}
+  .compare{
+    width:100%; border-collapse:separate; border-spacing:0;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); overflow:hidden;
+  }
+  .compare th,.compare td{padding:18px 20px; text-align:center; border-bottom:1px solid var(--border);}
+  .compare tr:last-child td{border-bottom:none;}
+  .compare thead th{font-size:0.95rem; background:var(--surface-2); color:var(--text-secondary);}
+  .compare thead th.us{color:var(--accent);}
+  .compare td:first-child,.compare th:first-child{text-align:left; color:var(--text-secondary);}
+  .compare td.us{
+    background:rgba(57,224,122,0.06);
+    color:var(--accent); font-weight:700; font-size:1.15rem;
+  }
+  :root[data-theme="light"] .compare td.us{background:rgba(34,163,90,0.07);}
+  .compare td.them{color:var(--text-secondary); text-decoration:line-through; text-decoration-color:rgba(147,153,159,0.5);}
+  .save{
+    display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px;
+    font-size:0.7rem; font-weight:600; vertical-align:middle;
+    background:var(--accent); color:#06110a; text-decoration:none;
+  }
+  :root[data-theme="light"] .save{color:#fff;}
+  .compare-note{text-align:center; color:var(--text-secondary); font-size:0.82rem; margin-top:16px;}
+
+  /* Floating buttons */
+  .float-btns{
+    position:fixed; right:20px; bottom:20px; z-index:90;
+    display:flex; flex-direction:column; align-items:flex-end; gap:12px;
+  }
+  .fab{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    border-radius:999px; cursor:pointer; font-family:inherit; font-weight:600;
+    transition:transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+  }
+  .fab:hover{transform:translateY(-2px);}
+  .fab-tg{
+    padding:13px 20px; font-size:0.9rem;
+    background:var(--accent); color:#06110a; border:none;
+    box-shadow:0 6px 24px rgba(57,224,122,0.35);
+  }
+  :root[data-theme="light"] .fab-tg{color:#fff; box-shadow:0 6px 24px rgba(34,163,90,0.35);}
+  .fab-top{
+    width:46px; height:46px; font-size:1.1rem;
+    background:var(--surface); color:var(--text); border:1px solid var(--border);
+    opacity:0; pointer-events:none;
+  }
+  .fab-top.show{opacity:1; pointer-events:auto;}
+  .fab-top:hover{border-color:var(--accent); color:var(--accent);}
+  @media (max-width:768px){
+    .compare th,.compare td{padding:14px 10px; font-size:0.85rem;}
+    .compare td.us{font-size:1rem;}
+    .save{display:block; margin:6px auto 0; width:max-content;}
+    .float-btns{right:14px; bottom:14px;}
+    .fab-tg{padding:12px 16px;}
+  }
 </style>
 </head>
 <body>
@@ -530,7 +600,7 @@
       <div class="feature-card">
         <div class="feature-icon">🌍</div>
         <h3>Несколько локаций</h3>
-        <p>Выбирайте доступную локацию.</p>
+        <p>Выберите доступную локацию.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🤖</div>
@@ -580,6 +650,38 @@
       </div>
       <a href="#" class="btn btn-primary tg-link">Получить пробный период</a>
     </div>
+
+    <div class="pay-box">
+      <div class="pay-title">Способы оплаты</div>
+      <div class="pay-list">
+        <div class="pay-chip"><span>🪙</span>Криптовалюта</div>
+        <div class="pay-chip"><span>👛</span>Telegram-кошелёк</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="compare">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Сравнение</span>
+      <h2>ShadowLink VPN и другие VPN</h2>
+      <p>Средние цены на рынке и у нас за тот же срок.</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th>Срок</th><th class="us">ShadowLink VPN</th><th>Другие VPN</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>7 дней</td><td class="us">39 ₽<span class="save">−78%</span></td><td class="them">180 ₽</td></tr>
+          <tr><td>30 дней</td><td class="us">119 ₽<span class="save">−80%</span></td><td class="them">600 ₽</td></tr>
+          <tr><td>90 дней</td><td class="us">299 ₽<span class="save">−85%</span></td><td class="them">2 000 ₽</td></tr>
+          <tr><td>365 дней</td><td class="us">999 ₽<span class="save">−88%</span></td><td class="them">8 300 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">Цены других VPN — средние по рынку, указаны для примера.</p>
   </div>
 </section>
 
@@ -627,14 +729,14 @@
       <p>Пример доступных локаций и идентификаторов серверов.</p>
     </div>
     <div class="server-grid">
-      <div class="server-chip"><span><span class="server-flag">🇫🇷</span>FR  (ФРАНЦИЯ)  ⋮ ОБХОД</span><span>🎭</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇫🇷</span>FR  (ФРАНЦИЯ)  ⋮ 0.1g</span><span>📶</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇫🇷</span>FR  (ФРАНЦИЯ)  ⋮ WI-FI</span><span>🛜</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇳🇱</span>NL  (НИДЕРЛАНДЫ) ⋮ QUICK</span><span>⚡️</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇳🇱</span>NL  (НИДЕРЛАНДЫ) ⋮ x1.0</span><span>🟢</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇳🇱</span>NL  (НИДЕРЛАНДЫ) ⋮ #02</span><span>🌟</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇵🇱</span>PL  (ПОЛЬША) ⋮ IPv4</span><span>🛰️</span></div>
-      <div class="server-chip"><span><span class="server-flag">🇵🇱</span>PL  (ПОЛЬША) ⋮ V3</span><span>🌐</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇫🇷</span>FR ⋮ ОБХОД</span><span>🎭</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇫🇷</span>FR ⋮ 0.1g</span><span>📶</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇫🇷</span>FR ⋮ WI-FI</span><span>🛜</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇳🇱</span>NL ⋮ QUICK</span><span>⚡️</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇳🇱</span>NL ⋮ x1.0</span><span>🟢</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇳🇱</span>NL ⋮ #02</span><span>🌟</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇵🇱</span>PL ⋮ IPv4</span><span>🛰️</span></div>
+      <div class="server-chip"><span><span class="server-flag">🇵🇱</span>PL ⋮ V3</span><span>🌐</span></div>
     </div>
     <p class="server-note">Доступность локаций зависит от текущей инфраструктуры.</p>
   </div>
@@ -703,6 +805,11 @@
   </div>
 </footer>
 
+<div class="float-btns">
+  <button type="button" class="fab fab-top" id="toTop" aria-label="Наверх" title="Наверх">↑</button>
+  <a href="#" class="fab fab-tg tg-link">✈️ Telegram</a>
+</div>
+
 <script>
   // Единая переменная для ссылки на Telegram-бота.
   // Замените значение здесь, чтобы обновить все кнопки сайта.
@@ -756,6 +863,14 @@
     const next = current === 'light' ? 'dark' : 'light';
     applyTheme(next);
     try { localStorage.setItem('shadowlink-theme', next); } catch (err) {}
+  });
+  // Кнопка «Наверх»
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    toTop.classList.toggle('show', window.scrollY > 500);
+  }, { passive: true });
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
 
